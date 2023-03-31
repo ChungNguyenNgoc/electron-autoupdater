@@ -49,7 +49,7 @@ autoUpdater.on("update-downloaded", (info) => {
 });
 
 autoUpdater.on("error", (info) => {
-  curWindow.showMessage("update error: ", info);
+  curWindow.showMessage("Update error: ", info);
 });
 
 //Global exception handler
