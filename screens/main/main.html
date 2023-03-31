@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electron Test App</title>
+  </head>
+  <body>
+    <h1>This is my auto-updated app</h1>
+    <strong><div id="message">Status message...</div></strong>
+
+    <br />
+    <p>
+      This app will demonstrate how we can apply an auto update to an
+      application.
+    </p>
+
+    <script>
+      window.bridge.updateMessage((event, message) => {
+        console.log("message logged in view");
+        console.log(message);
+
+        let elemE = document.getElementById("message");
+        elemE.innerHTML = message;
+      });
+    </script>
+    <script>
+      navigator.permissions.query({ name: "geolocation" }).then((result) => {
+        if (result.state === "granted") {
+          console.log("Permission granted.");
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              console.log(position.coords.latitude, position.coords.longitude);
+            },
+            (error) => {
+              switch (error.code) {
+                case error.PERMISSION_DENIED:
+                  console.log("User denied the request for Geolocation.");
+                  break;
+                case error.POSITION_UNAVAILABLE:
+                  console.log("Location information is unavailable.");
+                  break;
+                case error.TIMEOUT:
+                  console.log("The request to get user location timed out.");
+                  break;
+                case error.UNKNOWN_ERROR:
+                  console.log("An unknown error occurred.");
+                  break;
+              }
+            },
+          );
+        } else if (result.state === "prompt") {
+          console.log("Permission prompt.");
+        } else {
+          console.log("Permission denied.");
+        }
+      });
+    </script>
+  </body>
+</html>
