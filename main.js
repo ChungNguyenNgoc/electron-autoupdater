@@ -31,8 +31,8 @@ autoUpdater.on("update-available", (info) => {
   curWindow.showMessage(
     `Update available. Current version ${app.getVersion()}`,
   );
-  let pth = autoUpdater.downloadUpdate();
-  curWindow.showMessage(pth);
+  // let pth = autoUpdater.downloadUpdate();
+  // curWindow.showMessage(pth);
 });
 
 autoUpdater.on("update-not-available", (info) => {
