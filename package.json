@@ -9,7 +9,7 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "repository": "https://github.com/cyrilgupta/electron-autoupdater",
+  "repository": "https://github.com/ChungNguyenNgoc/electron-autoupdater",
   "publish": {
     "provider": "github",
     "releaseType": "release"
