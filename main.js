@@ -41,8 +41,7 @@ autoUpdater.on("update-available", (info) => {
       );
       curWindow.showMessage(`Update available. buttonIndex: ${buttonIndex}`);
       if (buttonIndex === 0) {
-        let pth = autoUpdater.downloadUpdate();
-        curWindow.showMessage(pth);
+        autoUpdater.downloadUpdate();
       } else {
         updater.enabled = true;
         updater = null;
