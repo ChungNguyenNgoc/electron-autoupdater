@@ -2,9 +2,9 @@ const { app, BrowserWindow, ipcMain, ipcRenderer } = require("electron");
 const MainScreen = require("./screens/main/mainScreen");
 const Globals = require("./globals");
 const { autoUpdater, AppUpdater } = require("electron-updater");
-
+const { dialog } = require("electron");
 let curWindow;
-
+let updater;
 //Basic flags
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
@@ -28,17 +28,38 @@ app.whenReady().then(() => {
 
 /*New Update Available*/
 autoUpdater.on("update-available", (info) => {
-  curWindow.showMessage(
-    `Update available. Current version ${app.getVersion()}`,
-  );
-  // let pth = autoUpdater.downloadUpdate();
-  // curWindow.showMessage(pth);
+  dialog
+    .showMessageBox({
+      type: "info",
+      title: "Found Updates",
+      message: "Found updates, do you want update now",
+      buttons: ["Sure", "No"],
+    })
+    .then((buttonIndex) => {
+      curWindow.showMessage(
+        `Update available. Current version ${app.getVersion()}`,
+      );
+      curWindow.showMessage(`Update available. buttonIndex: ${buttonIndex}`);
+      if (buttonIndex === 0) {
+        let pth = autoUpdater.downloadUpdate();
+        curWindow.showMessage(pth);
+      } else {
+        updater.enabled = true;
+        updater = null;
+      }
+    });
 });
 
 autoUpdater.on("update-not-available", (info) => {
   curWindow.showMessage(
     `No update available. Current version ${app.getVersion()}`,
   );
+  dialog.showMessageBox({
+    title: "No Updates",
+    message: `No update available. Current version ${app.getVersion()}`,
+  });
+  updater.enabled = true;
+  updater = null;
 });
 
 /*Download Completion Message*/
@@ -46,10 +67,22 @@ autoUpdater.on("update-downloaded", (info) => {
   curWindow.showMessage(
     `Update downloaded. Current version ${app.getVersion()}`,
   );
+  dialog
+    .showMessageBox({
+      title: "Install Updates",
+      message: `Update downloaded. Current version ${app.getVersion()}`,
+    })
+    .then(() => {
+      setImmediate(() => autoUpdater.quitAndInstall());
+    });
 });
 
 autoUpdater.on("error", (info) => {
   curWindow.showMessage("Update error: ", info);
+  dialog.showErrorBox(
+    "Error: ",
+    error == null ? "unknown" : (error.stack || error).toString(),
+  );
 });
 
 //Global exception handler

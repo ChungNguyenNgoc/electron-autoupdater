@@ -39,8 +39,6 @@ class MainScreen {
     wc.openDevTools({ mode: "undocked" });
 
     this.window.loadFile("./screens/main/main.html");
-
-    this.window.webContents.send("updateMessage", "chung test");
   }
 
   showMessage(message) {
