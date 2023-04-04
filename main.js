@@ -1,16 +1,47 @@
-const { app, BrowserWindow, ipcMain, ipcRenderer } = require("electron");
+const { app, BrowserWindow } = require("electron");
 const MainScreen = require("./screens/main/mainScreen");
-const Globals = require("./globals");
-const { autoUpdater, AppUpdater } = require("electron-updater");
+const { autoUpdater } = require("electron-updater");
 const { dialog } = require("electron");
+const { log } = require("electron-log");
+
 let curWindow;
 let updater;
 //Basic flags
+class Updater {
+  constructor() {
+    // log.transports.file.level = "info";
+    // log.log(`Logpath: ${log.transports.file.getFile().path}`);
+
+    // const apiUrl = "https://localhost:5004/api";
+    const apiUrl =
+      "https://github.com/ChungNguyenNgoc/electron-autoupdater/releases";
+    const GHToken = "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"; // Specify a (github, gitlab,...) token if using private repository.
+
+    autoUpdater.setFeedURL({
+      provider: "github",
+      // url: `${apiUrl}/update/${process.platform}/${app.getVersion()}`, // Ex: https://my-update-server.com/releases
+      url: `${apiUrl}`, // Ex: https://my-update-server.com/releases
+      channel: "latest ", // which means that the latest available version will be downloaded.
+      // useMultipleRangeRequest: true,
+      publishAutoUpdate: true,
+      requestHeaders: {
+        Authorization: `Bearer ${GHToken}`, // Specify a github token if using private repository.
+        // accept: 'application/octet-stream',
+      },
+    });
+
+    // autoUpdater.logger = log;
+    autoUpdater.checkForUpdatesAndNotify();
+    console.log("Chung test Updater");
+  }
+}
+
 autoUpdater.autoDownload = true;
 autoUpdater.autoInstallOnAppQuit = true;
 
 function createWindow() {
   curWindow = new MainScreen();
+  new Updater();
 }
 
 app.whenReady().then(() => {
