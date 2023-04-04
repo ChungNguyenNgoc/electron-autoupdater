@@ -2,16 +2,12 @@ const { app, BrowserWindow } = require("electron");
 const MainScreen = require("./screens/main/mainScreen");
 const { autoUpdater } = require("electron-updater");
 const { dialog } = require("electron");
-const { log } = require("electron-log");
 
 let curWindow;
 let updater;
 //Basic flags
 class Updater {
   constructor() {
-    // log.transports.file.level = "info";
-    // log.log(`Logpath: ${log.transports.file.getFile().path}`);
-
     // const apiUrl = "https://localhost:5004/api";
     const apiUrl =
       "https://github.com/ChungNguyenNgoc/electron-autoupdater/releases";
@@ -29,8 +25,6 @@ class Updater {
         // accept: 'application/octet-stream',
       },
     });
-
-    // autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
     console.log("Chung test Updater");
   }
