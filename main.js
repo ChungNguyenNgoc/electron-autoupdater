@@ -9,8 +9,7 @@ let updater;
 class Updater {
   constructor() {
     // const apiUrl = "https://localhost:5004/api";
-    const apiUrl =
-      "https://github.com/ChungNguyenNgoc/electron-autoupdater/releases";
+    const apiUrl = "https://github.com/ChungNguyenNgoc/electron-autoupdater";
     const GHToken = "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"; // Specify a (github, gitlab,...) token if using private repository.
 
     autoUpdater.setFeedURL({
