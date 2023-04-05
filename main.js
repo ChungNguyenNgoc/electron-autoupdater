@@ -29,7 +29,7 @@ class Updater {
     autoUpdater.setFeedURL({
       provider: "generic",
       url: `${apiUrl}`, // Ex: https://my-update-server.com/releases
-      channel: "latest ", // which means that the latest available version will be downloaded.
+      channel: "latest", // which means that the latest available version will be downloaded.
       // useMultipleRangeRequest: true,
       publishAutoUpdate: true,
       requestHeaders: {
