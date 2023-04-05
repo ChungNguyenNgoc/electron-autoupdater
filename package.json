@@ -9,11 +9,6 @@
     "start": "electron .",
     "dist": "electron-builder"
   },
-  "repository": "",
-  "publish": {
-    "provider": "github",
-    "releaseType": "release"
-  },
   "build": {
     "appId": "com.coderjeet.autoupdater",
     "productName": "Autoupdater app",
