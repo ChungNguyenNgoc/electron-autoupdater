@@ -16,17 +16,19 @@ const path = require("path");
 const { app, BrowserWindow, shell, ipcMain, dialog } = require("electron");
 const { autoUpdater } = require("electron-updater");
 
+//  "repository": "https://github.com/ChungNguyenNgoc/electron-autoupdater",
+
 class Updater {
   constructor() {
     log.transports.file.level = "info";
     log.log(`Logpath: ${log.transports.file.getFile().path}`);
 
-    const apiUrl = "https://localhost:5004/api";
-    const GHToken = ""; // Specify a (github, gitlab,...) token if using private repository.
+    const apiUrl = "https://github.com/ChungNguyenNgoc/electron-autoupdater";
+    const GHToken = "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"; // Specify a (github, gitlab,...) token if using private repository.
 
     autoUpdater.setFeedURL({
       provider: "generic",
-      url: `${apiUrl}/update/${process.platform}/${app.getVersion()}`, // Ex: https://my-update-server.com/releases
+      url: `${apiUrl}`, // Ex: https://my-update-server.com/releases
       channel: "latest ", // which means that the latest available version will be downloaded.
       // useMultipleRangeRequest: true,
       publishAutoUpdate: true,
