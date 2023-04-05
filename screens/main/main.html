@@ -15,15 +15,5 @@
       This app will demonstrate how we can apply an auto update to an
       application.
     </p>
-
-    <script>
-      window.bridge.updateMessage((event, message) => {
-        console.log("message logged in view");
-        console.log(message);
-
-        let elemE = document.getElementById("message");
-        elemE.innerHTML = message;
-      });
-    </script>
   </body>
 </html>
