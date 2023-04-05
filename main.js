@@ -23,7 +23,8 @@ class Updater {
     log.transports.file.level = "info";
     log.log(`Logpath: ${log.transports.file.getFile().path}`);
 
-    const apiUrl = "https://github.com/ChungNguyenNgoc/electron-autoupdater";
+    const apiUrl =
+      "https://github.com/ChungNguyenNgoc/electron-autoupdater/releases";
     const GHToken = "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"; // Specify a (github, gitlab,...) token if using private repository.
 
     autoUpdater.setFeedURL({
@@ -34,7 +35,7 @@ class Updater {
       publishAutoUpdate: true,
       requestHeaders: {
         Authorization: `Bearer ${GHToken}`, // Specify a github token if using private repository.
-        // accept: 'application/octet-stream',
+        accept: "application/octet-stream",
       },
     });
 
