@@ -29,7 +29,8 @@ class Updater {
 
     autoUpdater.setFeedURL({
       provider: "generic",
-      url: `${apiUrl}`, // Ex: https://my-update-server.com/releases
+      // url: `${apiUrl}`, // Ex: https://my-update-server.com/releases
+      url: "http://127.0.0.1:5501/dist/latest.yml",
       channel: "latest", // which means that the latest available version will be downloaded.
       // useMultipleRangeRequest: true,
       publishAutoUpdate: true,
