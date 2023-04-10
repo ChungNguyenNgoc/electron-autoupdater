@@ -31,7 +31,7 @@ class Updater {
       provider: "generic",
       url: "http://127.0.0.1:5501/dist/latest.yml", // Ex: https://my-update-server.com/releases
       // channel: "latest", // which means that the latest available version will be downloaded.
-      // useMultipleRangeRequest: true,
+      useMultipleRangeRequest: false,
       publishAutoUpdate: true,
       // requestHeaders: {
       //   Authorization: `Bearer ${GHToken}`, // Specify a github token if using private repository.
