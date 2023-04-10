@@ -21,23 +21,23 @@ const { autoUpdater } = require("electron-updater");
 class Updater {
   constructor() {
     log.transports.file.level = "info";
-    log.log(`Logpath: ${log.transports.file.getFile().path}`);
+    // log.log(`Logpath: ${log.transports.file.getFile().path}`);
 
     // const apiUrl =
     //   "https://github.com/ChungNguyenNgoc/electron-autoupdater/releases";
     // const GHToken = "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"; // Specify a (github, gitlab,...) token if using private repository.
 
-    autoUpdater.setFeedURL({
-      provider: "generic",
-      url: "http://127.0.0.1:5501/dist/latest.yml", // Ex: https://my-update-server.com/releases
-      // channel: "latest", // which means that the latest available version will be downloaded.
-      useMultipleRangeRequest: false,
-      publishAutoUpdate: true,
-      // requestHeaders: {
-      //   Authorization: `Bearer ${GHToken}`, // Specify a github token if using private repository.
-      //   accept: "application/octet-stream",
-      // },
-    });
+    // autoUpdater.setFeedURL({
+    //   provider: "generic",
+    //   url: "http://127.0.0.1:5501/dist/latest.yml", // Ex: https://my-update-server.com/releases
+    //   // channel: "latest", // which means that the latest available version will be downloaded.
+    //   useMultipleRangeRequest: false,
+    //   publishAutoUpdate: true,
+    //   // requestHeaders: {
+    //   //   Authorization: `Bearer ${GHToken}`, // Specify a github token if using private repository.
+    //   //   accept: "application/octet-stream",
+    //   // },
+    // });
 
     autoUpdater.logger = log;
     autoUpdater.checkForUpdatesAndNotify();
